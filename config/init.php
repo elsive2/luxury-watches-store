@@ -16,7 +16,6 @@ $uri = sprintf(
 	$_SERVER['SERVER_NAME'],
 );
 
-define('CURRENT_URI', $uri . $_SERVER['REQUEST_URI']);
 define('BASE_URI', $uri);
 define('ADMIN_URI', $uri . '/admin');
 

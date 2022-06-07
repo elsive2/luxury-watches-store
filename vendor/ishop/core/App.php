@@ -8,11 +8,12 @@ class App
 
 	public function __construct()
 	{
-		$query = trim($_SERVER['QUERY_STRING'], '/');
+		$query = $this->getQueryString();
 		session_start();
 		self::$app = Registry::instance();
 		$this->getParams();
 		new ErrorHandler;
+		Router::handle($query);
 	}
 
 	protected function getParams()
@@ -23,5 +24,11 @@ class App
 				self::$app->setProperty($key, $value);
 			}
 		}
+	}
+
+	protected function getQueryString()
+	{
+		$query = trim($_SERVER['REQUEST_URI'], '/');
+		return $query === '' ? '/' : $query;
 	}
 }

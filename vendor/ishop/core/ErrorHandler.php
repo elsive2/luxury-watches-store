@@ -19,7 +19,7 @@ class ErrorHandler
 	public function exceptionHandler(Exception $e)
 	{
 		$this->logErrors($e->getMessage(), $e->getFile(), $e->getLine());
-		$this->displayError('Exception: ', $e->getMessage(), $e->getFile(), $e->getLine(), $e->getCode());
+		$this->displayError('Exception', $e->getMessage(), $e->getFile(), $e->getLine(), $e->getCode());
 	}
 
 	private function logErrors(string $message = '', string $file = '', int $line = 1)

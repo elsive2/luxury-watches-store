@@ -5,6 +5,6 @@ require_once LIBS . '/functions.php';
 
 $app = new \ishop\App;
 
-throw new Exception('Page not found!', 404);
+throw new Exception('Something went wrong!', 500);
 
 echo 1;

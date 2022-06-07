@@ -7,10 +7,11 @@ use Exception;
 class Router
 {
 	protected static array $routes = [];
+	protected static string $prefix = '';
 
 	public static function add($route, $options = [])
 	{
-		self::$routes[$route] = $options;
+		self::$routes[self::$prefix . $route] = $options;
 	}
 
 	public static function handle($current)
@@ -28,6 +29,13 @@ class Router
 			call_user_func([$controllerInstance, $route['action']]);
 			return;
 		}
-		throw new \Exception('Page been found!', 404);
+		throw new \Exception('Page hasn\'t been found!', 404);
+	}
+
+	public static function prefix(string $prefix, $callback)
+	{
+		self::$prefix = $prefix;
+		$callback();
+		self::$prefix = '';
 	}
 }

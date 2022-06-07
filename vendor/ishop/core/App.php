@@ -8,7 +8,7 @@ class App
 
 	public function __construct()
 	{
-		$query = $this->getQueryString();
+		$query = trim($_SERVER['REQUEST_URI']);
 		session_start();
 		self::$app = Registry::instance();
 		$this->getParams();
@@ -24,11 +24,5 @@ class App
 				self::$app->setProperty($key, $value);
 			}
 		}
-	}
-
-	protected function getQueryString()
-	{
-		$query = trim($_SERVER['REQUEST_URI'], '/');
-		return $query === '' ? '/' : $query;
 	}
 }

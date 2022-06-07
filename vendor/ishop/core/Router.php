@@ -22,7 +22,7 @@ class Router
 			if ($_SERVER['REQUEST_METHOD'] !== $route['method']) {
 				throw new Exception('The route does not have this method', 404);
 			}
-			$controllerInstance = new $route['controller'];
+			$controllerInstance = new $route['controller']($route);
 			if (!method_exists($controllerInstance, $route['action'])) {
 				throw new Exception('The controller does not have this action', 404);
 			}

@@ -16,7 +16,7 @@ class ErrorHandler
 		set_exception_handler([$this, 'exceptionHandler']);
 	}
 
-	public function exceptionHandler(Exception $e)
+	public function exceptionHandler(\Throwable $e)
 	{
 		$this->logErrors($e->getMessage(), $e->getFile(), $e->getLine());
 		$this->displayError('Exception', $e->getMessage(), $e->getFile(), $e->getLine(), $e->getCode());

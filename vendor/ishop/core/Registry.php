@@ -6,7 +6,7 @@ class Registry
 {
 	use Singletone;
 
-	private static $properties = [];
+	private static array $properties = [];
 
 	public function setProperty($name, $value)
 	{
@@ -20,7 +20,7 @@ class Registry
 			: null;
 	}
 
-	public function getProperties()
+	public function getProperties(): array
 	{
 		return self::$properties;
 	}

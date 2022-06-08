@@ -6,7 +6,11 @@ class Controller
 {
 	protected array $route;
 
-	protected array $meta;
+	protected array $meta = [
+		'title' => '',
+		'desc' => '',
+		'keywords' => ''
+	];
 	public $layout;
 
 	public function __construct(array $route)
@@ -14,7 +18,7 @@ class Controller
 		$this->route = $route;
 	}
 
-	public function setMeta(string $title = '', string $desc = '', $keywords = '')
+	public function setMeta(string $title, string $desc = '', $keywords = '')
 	{
 		$this->meta['title']  = $title;
 		$this->meta['desc']  = $desc;

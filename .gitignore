@@ -1,5 +1,4 @@
 composer.lock
-vendor/composer
-vendor/autoload.php
-vendor/gabordemooij
 tmp/
+vendor/*
+!vendor/ishop

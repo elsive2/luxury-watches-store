@@ -39,4 +39,12 @@ class View
 			require $layoutFile;
 		}
 	}
+
+	public function getMeta()
+	{
+		$output = "<title>" . $this->meta["title"] . "</title>";
+		$output .= '<meta name="description" content="' . $this->meta['desc'] . '">';
+		$output .= '<meta name="keywords" content="' . $this->meta['keywords'] . '">';
+		return $output;
+	}
 }

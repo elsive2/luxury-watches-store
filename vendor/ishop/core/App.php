@@ -8,7 +8,8 @@ class App
 
 	public function __construct()
 	{
-		$query = trim($_SERVER['REQUEST_URI']);
+
+		$query = trim(parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH));
 		session_start();
 		self::$app = Registry::instance();
 		$this->getParams();

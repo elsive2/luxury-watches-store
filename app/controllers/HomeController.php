@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use ishop\Cache;
 
 final class HomeController extends Controller
 {

@@ -31,7 +31,7 @@ class View
 		$content = ob_get_clean();
 
 		if ($this->layout) {
-			echo $layoutFile = APP . "/views/layouts/{$this->layout}.php";
+			$layoutFile = APP . "/views/layouts/{$this->layout}.php";
 
 			if (!is_file($layoutFile)) {
 				throw new Exception("There is no such a {$this->layoutFile} layout file");

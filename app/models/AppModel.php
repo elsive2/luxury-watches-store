@@ -4,6 +4,6 @@ namespace app\models;
 
 use ishop\base\Model;
 
-class Test extends Model
+class AppModel extends Model
 {
 }

@@ -25,7 +25,7 @@ class Controller
 		$this->meta['keywords']  = $keywords;
 	}
 
-	public function getView(string $view, $data)
+	public function getView(string $view, $data = [])
 	{
 		$layout = isset($this->layout) ? $this->layout : LAYOUT;
 		$viewObj = new View($this->route, $this->meta, $view, $layout);

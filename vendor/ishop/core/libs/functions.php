@@ -1,6 +1,6 @@
 <?php
 
-function debug_array(array $array)
+function debug($element)
 {
-	echo '<pre>' . print_r($array, true) . '</pre>';
+	echo '<pre>' . print_r($element, true) . '</pre>';
 }

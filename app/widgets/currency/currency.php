@@ -15,7 +15,7 @@ class Currency
 	public static function getCurrency($currencies)
 	{
 		return isset($_COOKIE['currency']) && existsInRedbeanObjects($currencies, 'code', $_COOKIE['currency'])
-			? array_values(R::find('currency', 'WHERE code = ?', [$_COOKIE['currency']]))[0]
+			? R::findOne('currency', 'WHERE code = ?', [$_COOKIE['currency']])
 			: array_values($currencies)[0];
 	}
 

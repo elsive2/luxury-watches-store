@@ -24,7 +24,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="col-md-6 top-header-left">
 					<div class="drop">
 						<div class="box">
-							<select tabindex="4" class="dropdown drop">
+							<select id="currencies" tabindex="4" class="dropdown drop">
 								<? app\widgets\currency\Currency::run() ?>
 							</select>
 						</div>
@@ -343,6 +343,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 
 		});
 	</script>
+	<script src="../../../public/app.js?v=<?= time() ?>"></script>
 </body>
 
 </html>

@@ -3,6 +3,8 @@
 namespace app\controllers;
 
 use app\models\AppModel;
+use app\widgets\currency\Currency;
+use ishop\App;
 use ishop\base\Controller as BaseController;
 
 class Controller extends BaseController
@@ -11,5 +13,7 @@ class Controller extends BaseController
 	{
 		parent::__construct($route);
 		new AppModel;
+		App::$app->setProperty('currencies', Currency::getCurrencies());
+		App::$app->setProperty('currency', Currency::getCurrency(App::$app->getProperty('currencies')));
 	}
 }

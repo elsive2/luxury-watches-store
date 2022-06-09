@@ -2,18 +2,11 @@
 
 namespace app\widgets\currency;
 
+use ishop\App;
 use RedBeanPHP\R as R;
 
 class Currency
 {
-	protected $tpl;
-
-	public function __construct()
-	{
-		$this->tpl = __DIR__ . '/currency_tpl/currency.php';
-		$this->run();
-	}
-
 	public static function getCurrencies()
 	{
 		return R::find('currency', 'ORDER BY base DESC');
@@ -22,16 +15,17 @@ class Currency
 	public static function getCurrency($currencies)
 	{
 		return isset($_COOKIE['currency']) && existsInRedbeanObjects($currencies, 'code', $_COOKIE['currency'])
-			? R::find('currency', 'WHERE code = ?', [$_COOKIE['currency']])
-			: reset($currencies);
+			? array_values(R::find('currency', 'WHERE code = ?', [$_COOKIE['currency']]))[0]
+			: array_values($currencies)[0];
 	}
 
-	protected function run()
+	public static function run()
 	{
-		$this->getHtml();
-	}
+		$currencies = App::$app->getProperty('currencies');
+		$currency = App::$app->getProperty('currency');
 
-	protected function getHtml()
-	{
+		ob_start();
+		require __DIR__ . '/currency_tpl/currency.php';
+		echo \ob_get_clean();
 	}
 }

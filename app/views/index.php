@@ -40,47 +40,48 @@
 <!--about-end-->
 <!--product-starts-->
 <? if ($data['products']) : ?>
+	<? $curr = \ishop\App::$app->getProperty('currency'); ?>
 	<div class="product">
 		<div class="container">
 			<div class="product-top">
 				<? $i = 1 ?>
 				<? foreach ($data['products'] as $product) : ?>
-					<? if ($i % 5 === 0): ?>
+					<? if ($i % 5 === 0) : ?>
 						<div class="clearfix"></div>
-						</div>
-						<div class="product-one">
-					<? endif ?>
-					<? if ($i === 1) : ?>
-						<div class="product-one">
-					<? endif ?>
+			</div>
+			<div class="product-one">
+			<? endif ?>
+			<? if ($i === 1) : ?>
+				<div class="product-one">
+				<? endif ?>
 
-					<div class="col-md-3 product-left">
-						<div class="product-main simpleCart_shelfItem">
-							<a href="product?alias=<?= $product['alias'] ?>" class="mask"><img class="img-responsive zoom-img" src="../../../public/images/<?=$product['img']?>" alt="" /></a>
-							<div class="product-bottom">
-								<h3><a href="product?alias=<?= $product['alias'] ?>"><?= $product['title'] ?></a></h3>
-								<p><a href="product?alias=<?= $product['alias'] ?>">Explore now</a></p>
-								<h4><a class="add-to-cart-link" href="cart/add?id=<?=$product['id']?>"><i></i></a> <span class=" item_price">$ <?=$product['price']?></span></h4>
-								<small><del><? echo $product['old_price'] == 0 ? 0 : $product['old_price'] ?></del></small>
-							</div>
-							<? if ($product['old_price'] != 0): ?>
-							<div class="srch">
-								<span>-<?= round((($product['old_price'] - $product['price']) * 100) / $product['price']) ?>%</span>
-							</div>
-							<? else: ?>
-							<div class="srch">
-								<span>-0%</span>
-							</div>
+				<div class="col-md-3 product-left">
+					<div class="product-main simpleCart_shelfItem">
+						<a href="product?alias=<?= $product['alias'] ?>" class="mask"><img class="img-responsive zoom-img" src="../../../public/images/<?= $product['img'] ?>" alt="" /></a>
+						<div class="product-bottom">
+							<h3><a href="product?alias=<?= $product['alias'] ?>"><?= $product['title'] ?></a></h3>
+							<p><a href="product?alias=<?= $product['alias'] ?>">Explore now</a></p>
+							<h4><a class="add-to-cart-link" href="cart/add?id=<?= $product['id'] ?>"><i></i></a> <span class=" item_price"><?= $curr['symbol_left'] ?> <?= $product['price'] * $curr['value'] ?> <?= $curr['symbol_right'] ?></span></h4>
+							<? if ($product['old_price'] != 0) : ?>
+								<del><?= $curr['symbol_left'] ?> <?= $product['old_price'] ?> <?= $curr['symbol_right'] ?></del>
+							<? else : ?>
+								<br>
 							<? endif ?>
 						</div>
-					</div>					
-					<? $i++ ?>					
-				<? endforeach ?>
-				<div class="clearfix"></div>
+						<? if ($product['old_price'] != 0) : ?>
+							<div class="srch">
+								<span>-<?= round((($product['old_price'] - $product['price']) * 100) / ($product['price'] * $curr['value'])) ?>%</span>
+							</div>
+						<? endif ?>
+					</div>
+				</div>
+				<? $i++ ?>
+			<? endforeach ?>
+			<div class="clearfix"></div>
 				</div>
 			</div>
 		</div>
 	</div>
 <? endif ?>
 
-		<!--product-end-->
+<!--product-end-->

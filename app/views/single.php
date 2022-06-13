@@ -135,7 +135,37 @@
 				<? if ($data['related']) : ?>
 					<div class="latestproducts">
 						<div class="product-one">
+							<h3>Also can be interesting</h3>
 							<? foreach ($data['related'] as $related) : ?>
+								<div class="col-md-4 product-left p-left">
+									<div class="product-main simpleCart_shelfItem">
+										<a href="product?alias=<?= $related['alias'] ?>" class="mask"><img class="img-responsive zoom-img" src="../../public/images/<?= $related['img'] ?>" alt="" /></a>
+										<div class="product-bottom">
+											<h3><a href="product?alias=<?= $related['alias'] ?>"></a><?= $related['title'] ?></h3>
+											<p>Explore Now</p>
+											<h4><a class="item_add add-to-cart-link" href="cart/add?id=<?= $related['id'] ?>" data-id="<?= $related['id'] ?>"><i></i></a> <span class=" item_price"><?= $curr['symbol_left'] ?> <?= $related['price'] * $curr['value'] ?> <?= $curr['symbol_right'] ?></span></h4>
+											<? if ($related['old_price'] != 0) : ?>
+												<del><?= $curr['symbol_left'] ?> <?= $related['old_price'] * $curr['value'] ?> <?= $curr['symbol_right'] ?></del>
+											<? endif ?>
+										</div>
+										<? if ($related['old_price'] != 0) : ?>
+											<div class="srch">
+												<span>-<?= round((($related['old_price'] - $related['price']) * 100) / ($related['price'] * $curr['value'])) ?>%</span>
+											</div>
+										<? endif ?>
+									</div>
+								</div>
+							<? endforeach ?>
+							<div class="clearfix"></div>
+						</div>
+					</div>
+				<? endif ?>
+
+				<? if ($data['recentlyWatched']) : ?>
+					<div class="latestproducts">
+						<div class="product-one">
+							<h3>Recently watched products</h3>
+							<? foreach ($data['recentlyWatched'] as $related) : ?>
 								<div class="col-md-4 product-left p-left">
 									<div class="product-main simpleCart_shelfItem">
 										<a href="product?alias=<?= $related['alias'] ?>" class="mask"><img class="img-responsive zoom-img" src="../../public/images/<?= $related['img'] ?>" alt="" /></a>

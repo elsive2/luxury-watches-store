@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Product;
 use Exception;
 use RedBeanPHP\R as R;
 
@@ -21,7 +22,16 @@ class ProductController extends Controller
 		$related = R::getAll("SELECT product.* FROM related_product JOIN product ON product.id = related_product.related_id WHERE related_product.product_id = ?", [$product['id']]);
 		$gallery = R::findAll('gallery', 'WHERE product_id = ?', [$product['id']]);
 
+		$model = new Product;
+		$model->setRecentlyWatched($product['id']);
+		$recentlyWatched = null;
+
+		if ($ids = $model->getRecentlyWatched()) {
+			debug($ids);
+			$recentlyWatched = R::find('product', 'id IN (' . R::genSlots($ids) . ') LIMIT 3', $ids);
+		}
+
 		$this->setMeta($product['title'], $product['desc'], $product['keywords']);
-		$this->getView('single', compact('product', 'related', 'gallery'));
+		$this->getView('single', compact('product', 'related', 'gallery', 'recentlyWatched'));
 	}
 }

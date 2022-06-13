@@ -10,7 +10,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 <head>
 	<?= $this->getMeta() ?>
 	<link href="../../../public/css/bootstrap.css" rel="stylesheet" type="text/css" media="all" />
-	<link href="../../../public/css/style.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="../../../public/css/style.css?v=<?= time() ?>" rel="stylesheet" type="text/css" media="all" />
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	<link href="../../../public/css/memenu.css" rel="stylesheet" type="text/css" media="all" />
@@ -68,20 +68,46 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		<div class="container">
 			<div class="header">
 				<div class="col-md-9 header-left">
-					<div class="menu">
-						<? new app\widgets\menu\Menu() ?>
+					<div class="top-nav">
+						<ul class="memenu skyblue">
+							<li class="active">
+								<a href="index.html">Home</a>
+							</li>
+							<? foreach (app\widgets\menu\Menu::run() as $element) : ?>
+								<li class="grid">
+									<a href="#"><?= $element['title'] ?></a>
+									<? if (!empty($element['childs'])) : ?>
+										<div class="mepanel">
+											<div class="row">
+												<div class="cl1 me-one">
+													<ul>
+														<? foreach ($element['childs'] as $child) : ?>
+															<li>
+																<a href="#"><?= $child['title'] ?></a>
+															</li>
+														<? endforeach ?>
+													</ul>
+												</div>
+											</div>
+										</div>
+									<? endif ?>
+								</li>
+							<? endforeach ?>
+						</ul>
 					</div>
 					<div class="clearfix"> </div>
+
 				</div>
-				<div class="col-md-3 header-right">
-					<div class="search-bar">
-						<input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
-						<input type="submit" value="">
-					</div>
-				</div>
-				<div class="clearfix"> </div>
 			</div>
+			<div class="col-md-3 header-right">
+				<div class="search-bar">
+					<input type="text" value="Search" onfocus="this.value = '';" onblur="if (this.value == '') {this.value = 'Search';}">
+					<input type="submit" value="">
+				</div>
+			</div>
+			<div class="clearfix"> </div>
 		</div>
+	</div>
 	</div>
 	<!--bottom-header-->
 
@@ -177,7 +203,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 	</div>
 	<!--footer-end-->
-	<script src="../../../public/js/jquery-1.11.0.min.js"></script>
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
 	<script src="../../../public/js/simpleCart.min.js"> </script>
 	<script type="text/javascript" src="../../../public/js/memenu.js"></script>
 	<script>

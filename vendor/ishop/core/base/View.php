@@ -29,6 +29,7 @@ class View
 		ob_start();
 		require $viewFile;
 		$content = ob_get_clean();
+		$scripts = $this->getScripts();
 
 		if ($this->layout) {
 			$layoutFile = APP . "/views/layouts/{$this->layout}.php";
@@ -46,5 +47,15 @@ class View
 		$output .= '<meta name="description" content="' . $this->meta['desc'] . '">';
 		$output .= '<meta name="keywords" content="' . $this->meta['keywords'] . '">';
 		return $output;
+	}
+
+	public function getScripts()
+	{
+		$scriptFile = APP . "/views/scripts/{$this->view}.php";
+		if (is_file($scriptFile)) {
+			ob_start();
+			require($scriptFile);
+			return ob_get_clean();
+		}
 	}
 }

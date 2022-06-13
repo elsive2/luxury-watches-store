@@ -58,7 +58,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!--top-header-->
 	<!--start-logo-->
 	<div class="logo">
-		<a href="index.html">
+		<a href="/">
 			<h1>Luxury Watches</h1>
 		</a>
 	</div>
@@ -71,7 +71,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 					<div class="top-nav">
 						<ul class="memenu skyblue">
 							<li class="active">
-								<a href="index.html">Home</a>
+								<a href="/">Home</a>
 							</li>
 							<? foreach (app\widgets\menu\Menu::run() as $element) : ?>
 								<li class="grid">
@@ -214,27 +214,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	<!--dropdown-->
 	<script src="../../../public/js/jquery.easydropdown.js"></script>
 	<script src="../../../public/js/responsiveslides.min.js"></script>
-	<script>
-		// You can also use "$(window).load(function() {"
-		$(function() {
-			// Slideshow 4
-			$("#slider4").responsiveSlides({
-				auto: true,
-				pager: true,
-				nav: true,
-				speed: 500,
-				namespace: "callbacks",
-				before: function() {
-					$('.events').append("<li>before event fired.</li>");
-				},
-				after: function() {
-					$('.events').append("<li>after event fired.</li>");
-				}
-			});
-
-		});
-	</script>
 	<script src="../../../public/app.js?v=<?= time() ?>"></script>
+	<script type="application/x-javascript">
+		addEventListener("load", function() {
+			setTimeout(hideURLbar, 0);
+		}, false);
+
+		function hideURLbar() {
+			window.scrollTo(0, 1);
+		}
+	</script>
+
+	<?= $scripts ?>
 </body>
 
 </html>

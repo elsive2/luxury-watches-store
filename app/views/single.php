@@ -16,21 +16,23 @@
 		<div class="single-main">
 			<div class="col-md-9 single-main-left">
 				<div class="sngl-top">
-					<div class="col-md-5 single-top-left">
-						<div class="flexslider">
-							<ul class="slides">
-								<li data-thumb="../../public/images/s-1.jpg">
-									<div class="thumb-image"> <img src="../../public/images/s-1.jpg" data-imagezoom="true" class="img-responsive" alt="" /> </div>
-								</li>
-								<li data-thumb="../../public/images/s-2.jpg">
-									<div class="thumb-image"> <img src="../../public/images/s-2.jpg" data-imagezoom="true" class="img-responsive" alt="" /> </div>
-								</li>
-								<li data-thumb="../../public/images/s-3.jpg">
-									<div class="thumb-image"> <img src="../../public/images/s-3.jpg" data-imagezoom="true" class="img-responsive" alt="" /> </div>
-								</li>
-							</ul>
+					<? if ($data['gallery']) : ?>
+						<div class="col-md-5 single-top-left">
+							<div class="flexslider">
+								<ul class="slides">
+									<? foreach ($data['gallery'] as $image) : ?>
+										<li data-thumb="../../public/images/<?= $image['img'] ?>">
+											<div class="thumb-image"> <img src="../../public/images/<?= $image['img'] ?>" data-imagezoom="true" class="img-responsive" alt="" /> </div>
+										</li>
+									<? endforeach ?>
+								</ul>
+							</div>
 						</div>
-					</div>
+					<? else : ?>
+						<div class="col-md-3 single-top-left">
+							<img src="../../public/images/<?= $data['product']['img'] ?>" alt="">
+						</div>
+					<? endif ?>
 					<?
 					$curr = \ishop\App::$app->getProperty('currency');
 					$cats = \ishop\App::$app->getProperty('cats');

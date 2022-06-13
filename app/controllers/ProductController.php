@@ -17,9 +17,11 @@ class ProductController extends Controller
 		if (!$product) {
 			throw new Exception('There is no such a product!', 404);
 		}
+
 		$related = R::getAll("SELECT product.* FROM related_product JOIN product ON product.id = related_product.related_id WHERE related_product.product_id = ?", [$product['id']]);
-		debug($related);
+		$gallery = R::findAll('gallery', 'WHERE product_id = ?', [$product['id']]);
+
 		$this->setMeta($product['title'], $product['desc'], $product['keywords']);
-		$this->getView('single', compact('product', 'related'));
+		$this->getView('single', compact('product', 'related', 'gallery'));
 	}
 }

@@ -63,7 +63,7 @@
 							<p><a href="product?alias=<?= $product['alias'] ?>">Explore now</a></p>
 							<h4><a class="add-to-cart-link" href="cart/add?id=<?= $product['id'] ?>"><i></i></a> <span class=" item_price"><?= $curr['symbol_left'] ?> <?= $product['price'] * $curr['value'] ?> <?= $curr['symbol_right'] ?></span></h4>
 							<? if ($product['old_price'] != 0) : ?>
-								<del><?= $curr['symbol_left'] ?> <?= $product['old_price'] ?> <?= $curr['symbol_right'] ?></del>
+								<del><?= $curr['symbol_left'] ?> <?= $product['old_price'] * $curr['value'] ?> <?= $curr['symbol_right'] ?></del>
 							<? else : ?>
 								<br>
 							<? endif ?>

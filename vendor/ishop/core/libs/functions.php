@@ -1,8 +1,10 @@
 <?php
 
-function debug($element)
+function debug(...$elements)
 {
-	echo '<pre>' . print_r($element, true) . '</pre>';
+	foreach ($elements as $element) {
+		echo '<pre>' . print_r($element, true) . '</pre>';
+	}
 }
 
 function existsInRedbeanObjects(array $arr, $key, $value): bool

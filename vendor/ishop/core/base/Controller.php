@@ -18,7 +18,7 @@ class Controller
 		$this->route = $route;
 	}
 
-	public function setMeta(string $title, string $desc = '', $keywords = '')
+	public function setMeta(string $title, $desc = '', $keywords = '')
 	{
 		$this->meta['title']  = $title;
 		$this->meta['desc']  = $desc;

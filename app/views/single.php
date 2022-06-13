@@ -130,50 +130,33 @@
 						</li>
 					</ul>
 				</div>
-				<div class="latestproducts">
-					<div class="product-one">
-						<div class="col-md-4 product-left p-left">
-							<div class="product-main simpleCart_shelfItem">
-								<a href="single.html" class="mask"><img class="img-responsive zoom-img" src="../../public/images/p-1.png" alt="" /></a>
-								<div class="product-bottom">
-									<h3>Smart Watches</h3>
-									<p>Explore Now</p>
-									<h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">$ 329</span></h4>
+				<? if ($data['related']) : ?>
+					<div class="latestproducts">
+						<div class="product-one">
+							<? foreach ($data['related'] as $related) : ?>
+								<div class="col-md-4 product-left p-left">
+									<div class="product-main simpleCart_shelfItem">
+										<a href="product?alias=<?= $related['alias'] ?>" class="mask"><img class="img-responsive zoom-img" src="../../public/images/<?= $related['img'] ?>" alt="" /></a>
+										<div class="product-bottom">
+											<h3><a href="product?alias=<?= $related['alias'] ?>"></a><?= $related['title'] ?></h3>
+											<p>Explore Now</p>
+											<h4><a class="item_add add-to-cart-link" href="cart/add?id=<?= $related['id'] ?>" data-id="<?= $related['id'] ?>"><i></i></a> <span class=" item_price"><?= $curr['symbol_left'] ?> <?= $related['price'] * $curr['value'] ?> <?= $curr['symbol_right'] ?></span></h4>
+											<? if ($related['old_price'] != 0) : ?>
+												<del><?= $curr['symbol_left'] ?> <?= $related['old_price'] * $curr['value'] ?> <?= $curr['symbol_right'] ?></del>
+											<? endif ?>
+										</div>
+										<? if ($related['old_price'] != 0) : ?>
+											<div class="srch">
+												<span>-<?= round((($related['old_price'] - $related['price']) * 100) / ($related['price'] * $curr['value'])) ?>%</span>
+											</div>
+										<? endif ?>
+									</div>
 								</div>
-								<div class="srch">
-									<span>-50%</span>
-								</div>
-							</div>
+							<? endforeach ?>
+							<div class="clearfix"></div>
 						</div>
-						<div class="col-md-4 product-left p-left">
-							<div class="product-main simpleCart_shelfItem">
-								<a href="single.html" class="mask"><img class="img-responsive zoom-img" src="../../public/images/p-2.png" alt="" /></a>
-								<div class="product-bottom">
-									<h3>Smart Watches</h3>
-									<p>Explore Now</p>
-									<h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">$ 329</span></h4>
-								</div>
-								<div class="srch">
-									<span>-50%</span>
-								</div>
-							</div>
-						</div>
-						<div class="col-md-4 product-left p-left">
-							<div class="product-main simpleCart_shelfItem">
-								<a href="single.html" class="mask"><img class="img-responsive zoom-img" src="../../public/images/p-3.png" alt="" /></a>
-								<div class="product-bottom">
-									<h3>Smart Watches</h3>
-									<p>Explore Now</p>
-									<h4><a class="item_add" href="#"><i></i></a> <span class=" item_price">$ 329</span></h4>
-								</div>
-								<div class="srch">
-									<span>-50%</span>
-								</div>
-							</div>
-						</div>
-						<div class="clearfix"></div>
 					</div>
-				</div>
+				<? endif ?>
 			</div>
 			<div class="col-md-3 single-right">
 				<div class="w_sidebar">

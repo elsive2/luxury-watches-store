@@ -83,7 +83,7 @@
 								<p>count</p>
 								<input type="number" value="1" name="quantity" min="1" step="1">
 							</div>
-							<a id="productAdd" data-id="<?= $data['product']['id'] ?>" href="cart/add?id=<?= $data['product']['id'] ?>" class="add-cart item_add add-to-cart-link">ADD TO CART</a>
+							<a id="productAdd" data-id="<?= $data['product']['id'] ?>" href="" class="add-cart item_add add-to-cart-link">ADD TO CART</a>
 
 						</div>
 					</div>
@@ -137,7 +137,7 @@
 										<div class="product-bottom">
 											<h3><a href="product?alias=<?= $related['alias'] ?>"></a><?= $related['title'] ?></h3>
 											<p>Explore Now</p>
-											<h4><a class="item_add add-to-cart-link" href="cart/add?id=<?= $related['id'] ?>" data-id="<?= $related['id'] ?>"><i></i></a> <span class=" item_price"><?= $curr['symbol_left'] ?> <?= $related['price'] * $curr['value'] ?> <?= $curr['symbol_right'] ?></span></h4>
+											<h4><a class="item_add add-to-cart-link" href="" data-id="<?= $related['id'] ?>"><i></i></a> <span class=" item_price"><?= $curr['symbol_left'] ?> <?= $related['price'] * $curr['value'] ?> <?= $curr['symbol_right'] ?></span></h4>
 											<? if ($related['old_price'] != 0) : ?>
 												<del><?= $curr['symbol_left'] ?> <?= $related['old_price'] * $curr['value'] ?> <?= $curr['symbol_right'] ?></del>
 											<? endif ?>
@@ -166,7 +166,7 @@
 										<div class="product-bottom">
 											<h3><a href="product?alias=<?= $related['alias'] ?>"></a><?= $related['title'] ?></h3>
 											<p>Explore Now</p>
-											<h4><a class="item_add add-to-cart-link" href="cart/add?id=<?= $related['id'] ?>" data-id="<?= $related['id'] ?>"><i></i></a> <span class=" item_price"><?= $curr['symbol_left'] ?> <?= $related['price'] * $curr['value'] ?> <?= $curr['symbol_right'] ?></span></h4>
+											<h4><a class="item_add add-to-cart-link" href="" data-id="<?= $related['id'] ?>"><i></i></a> <span class=" item_price"><?= $curr['symbol_left'] ?> <?= $related['price'] * $curr['value'] ?> <?= $curr['symbol_right'] ?></span></h4>
 											<? if ($related['old_price'] != 0) : ?>
 												<del><?= $curr['symbol_left'] ?> <?= $related['old_price'] * $curr['value'] ?> <?= $curr['symbol_right'] ?></del>
 											<? endif ?>

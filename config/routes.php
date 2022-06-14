@@ -17,6 +17,11 @@ Router::add('/currency/change', [
 	'action' => 'change',
 	'method' => 'GET'
 ]);
+Router::add('/cart/add', [
+	'controller' => app\controllers\CartController::class,
+	'action' => 'add',
+	'method' => 'POST'
+]);
 
 Router::prefix('/admin', function () {
 	Router::add('/', [

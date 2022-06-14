@@ -14,13 +14,12 @@ class Product extends AppModel
 			setcookie(self::COOKIE_KEY, $id, time() + self::COOKIE_TIME, '/');
 		} else {
 			$recentlyWatched = explode('.', $recentlyWatched);
-			if (in_array($id, $recentlyWatched)) {
-				unset($recentlyWatched[$id]);
-			}
-			$recentlyWatched[] = $id;
-			$recentlyWatched = implode('.', $recentlyWatched);
+			if (!in_array($id, $recentlyWatched)) {
+				$recentlyWatched[] = $id;
+				$recentlyWatched = implode('.', $recentlyWatched);
 
-			setcookie(self::COOKIE_KEY, $recentlyWatched, time() + self::COOKIE_TIME, '/');
+				setcookie(self::COOKIE_KEY, $recentlyWatched, time() + self::COOKIE_TIME, '/');
+			}
 		}
 	}
 

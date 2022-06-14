@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Breadcrumb;
 use app\models\Product;
 use Exception;
 use RedBeanPHP\R as R;
@@ -27,11 +28,18 @@ class ProductController extends Controller
 		$recentlyWatched = null;
 
 		if ($ids = $model->getRecentlyWatched()) {
-			debug($ids);
 			$recentlyWatched = R::find('product', 'id IN (' . R::genSlots($ids) . ') LIMIT 3', $ids);
 		}
 
+		$breadcrumbs = Breadcrumb::getBreadcrumbs($product['category_id'], $product['title']);
+
 		$this->setMeta($product['title'], $product['desc'], $product['keywords']);
-		$this->getView('single', compact('product', 'related', 'gallery', 'recentlyWatched'));
+		$this->getView('single', compact(
+			'product',
+			'related',
+			'gallery',
+			'recentlyWatched',
+			'breadcrumbs'
+		));
 	}
 }

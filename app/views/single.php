@@ -54,7 +54,9 @@
 								<div class="clearfix"> </div>
 							</div>
 
-							<h5 class="item_price"><?= $curr['symbol_left'] ?> <?= $data['product']['price'] * $curr['value'] ?> <?= $curr['symbol_right'] ?></h5>
+							<h5 class="item_price" id="base-price" data-price="<?= $data['product']['price'] * $curr['value'] ?>" data-leftsymb="<?= $curr['symbol_left'] ?>" data-rightsymb="<?= $curr['symbol_right'] ?>">
+								<?= $curr['symbol_left'] ?> <?= $data['product']['price'] * $curr['value'] ?> <?= $curr['symbol_right'] ?>
+							</h5>
 							<? if ($data['product']['old_price'] != 0) : ?>
 								<del><?= $curr['symbol_left'] ?> <?= $data['product']['old_price'] * $curr['value'] ?> <?= $curr['symbol_right'] ?></del>
 							<? endif ?>
@@ -63,19 +65,12 @@
 								<ul>
 									<li>Color
 										<select>
-											<option>Silver</option>
-											<option>Black</option>
-											<option>Dark Black</option>
-											<option>Red</option>
+											<option>Default</option>
+											<? foreach ($data['mods'] as $mod) : ?>
+												<option data-price="<?= $mod['price'] * $curr['value'] ?>" value="<?= $mod['id'] ?>"><?= $mod['title'] ?></option>
+											<? endforeach ?>
 										</select>
 									</li>
-									<li class="size-in">Size<select>
-											<option>Large</option>
-											<option>Medium</option>
-											<option>small</option>
-											<option>Large</option>
-											<option>small</option>
-										</select></li>
 									<div class="clearfix"> </div>
 								</ul>
 							</div>

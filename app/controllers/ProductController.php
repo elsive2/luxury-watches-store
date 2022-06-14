@@ -33,13 +33,16 @@ class ProductController extends Controller
 
 		$breadcrumbs = Breadcrumb::getBreadcrumbs($product['category_id'], $product['title']);
 
+		$mods = R::findAll('modification', 'product_id = ?', [$product['id']]);
+
 		$this->setMeta($product['title'], $product['desc'], $product['keywords']);
 		$this->getView('single', compact(
 			'product',
 			'related',
 			'gallery',
 			'recentlyWatched',
-			'breadcrumbs'
+			'breadcrumbs',
+			'mods'
 		));
 	}
 }

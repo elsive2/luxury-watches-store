@@ -204,7 +204,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
 	<!--footer-end-->
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-	<script src="../../../public/js/simpleCart.min.js"> </script>
 	<script type="text/javascript" src="../../../public/js/memenu.js"></script>
 	<script>
 		$(document).ready(function() {

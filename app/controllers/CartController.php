@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Cart;
 use app\services\CartService;
 use Exception;
 
@@ -17,12 +18,15 @@ class CartController extends Controller
 
 	public function add()
 	{
-		$id = $this->cartService->getProduct($_REQUEST['id']);
+		$product = $this->cartService->getProduct($_REQUEST['id']);
 		$quantity = $this->cartService->getQuantity($_REQUEST['quantity']);
-		$modId = $this->cartService->getMod($_REQUEST['mod'], $_REQUEST['id']);
+		$mod = $this->cartService->getMod($_REQUEST['mod'], $_REQUEST['id']);
 
-		debug($id, $quantity, $modId);
-
-		die();
+		$cart = new Cart;
+		$cart->addToCart($product, $quantity, $mod);
+		if ($this->isAjax()) {
+			$this->getView('cart');
+		}
+		redirect();
 	}
 }

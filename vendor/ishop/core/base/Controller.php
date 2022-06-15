@@ -24,4 +24,9 @@ class Controller
 		$viewObj = new View($this->meta, $view, $layout);
 		$viewObj->render($data);
 	}
+
+	public function isAjax()
+	{
+		return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest';
+	}
 }

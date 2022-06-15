@@ -33,6 +33,7 @@ class CartService
 	public function getMod($modId, $productId)
 	{
 		if (empty($modId) || strtolower($modId) == 'default') {
+			return null;
 		}
 
 		$mod = R::findOne('modification', 'id = ? AND product_id = ?', [$modId, $productId]);

@@ -6,14 +6,12 @@ use Exception;
 
 class View
 {
-	protected array $route;
 	protected array $meta;
 	protected mixed $layout;
 	protected string $view;
 
-	public function __construct(array $route, array $meta, string $view = '', mixed $layout = '')
+	public function __construct(array $meta, string $view = '', mixed $layout = '')
 	{
-		$this->route = $route;
 		$this->view = $view;
 		$this->meta = $meta;
 		$this->layout = $layout;

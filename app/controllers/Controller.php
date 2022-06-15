@@ -11,9 +11,8 @@ use RedBeanPHP\R as R;
 
 class Controller extends BaseController
 {
-	public function __construct($route)
+	public function __construct()
 	{
-		parent::__construct($route);
 		new AppModel;
 		App::$app->setProperty('currencies', Currency::getCurrencies());
 		App::$app->setProperty('currency', Currency::getCurrency(App::$app->getProperty('currencies')));

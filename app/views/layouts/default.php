@@ -203,7 +203,26 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 		</div>
 	</div>
 	<!--footer-end-->
+
+	<div class="modal fade" id="cart" tabindex="1" role="dialog" aria-labelledby="myModalLabel">
+		<div class="modal-dialog modal-lg" role="document">
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+					<h4 class="modal-title" id="myModalLabel">Cart</h4>
+				</div>
+				<div class="modal-body"></div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Сontinue shopping</button>
+					<a href="/cart" type="button" class="btn btn-primary">Make on order</a>
+					<button type="button" class="btn btn-danger" onclick="clearCart()">Clear the cart</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.min.js"></script>
 	<script type="text/javascript" src="../../../public/js/memenu.js"></script>
 	<script>
 		$(document).ready(function() {

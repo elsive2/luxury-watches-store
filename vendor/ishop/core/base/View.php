@@ -39,6 +39,15 @@ class View
 		}
 	}
 
+	public function renderWithoutLayout($data)
+	{
+		$viewFile = APP . "/views/{$this->view}.php";
+		if (!is_file($viewFile)) {
+			throw new Exception("There is no such a {$this->view} view file", 404);
+		}
+		require $viewFile;
+	}
+
 	public function getMeta()
 	{
 		$output = "<title>" . $this->meta["title"] . "</title>";

@@ -8,9 +8,7 @@ class Cart extends AppModel
 {
 	public function addToCart($product, $quantity, $mod)
 	{
-		if (!isset($_SESSION['cart.currency'])) {
-			$_SESSION['cart.currency'] = App::$app->getProperty('currency');
-		}
+		$_SESSION['cart.currency'] = App::$app->getProperty('currency');
 		if (!is_null($mod)) {
 			$id = "{$product['id']}-{$mod['id']}";
 			$title = "{$product['title']} ({$mod['title']})";
@@ -33,6 +31,6 @@ class Cart extends AppModel
 			];
 		}
 		$_SESSION['cart.quantity'] = isset($_SESSION['cart.quantity']) ? $_SESSION['cart.quantity'] + $quantity : $quantity;
-		$_SESSION['cart.sum'] = isset($_SESSION['cart.sum']) ? $_SESSION['cart.sum'] + $quantity * ($price * $_SESSION['cart.currency']['value']) : $quantity * ($price * $_SESSION['cart.currency']['value']);
+		$_SESSION['cart.sum'] = isset($_SESSION['cart.sum']) ? $_SESSION['cart.sum'] * $_SESSION['cart.currency']['value'] + ($quantity * ($price * $_SESSION['cart.currency']['value'])) : $quantity * ($price * $_SESSION['cart.currency']['value']);
 	}
 }

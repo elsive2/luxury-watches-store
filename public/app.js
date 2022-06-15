@@ -10,7 +10,13 @@ $('body').on('click', '.add-to-cart-link', function (event) {
 		data: { id, quantity, mod },
 		type: 'POST',
 		success: function (res) {
-			console.log(res);
+			if ($.trim(res) == '<h3>Your cart is empty!</h3>') {
+				$('#cart .modal-footer a, #cart .modal-footer btn-danger').css('display', 'none')
+			} else {
+				$('#cart .modal-footer a, #cart .modal-footer btn-danger').css('display', 'inline-block')
+			}
+			$('#cart .modal-body').html(res)
+			$('#cart').modal()
 		},
 		error: function () {
 			alert('Something went wrong! Try it again!');

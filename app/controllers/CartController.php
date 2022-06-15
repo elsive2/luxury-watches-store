@@ -25,7 +25,7 @@ class CartController extends Controller
 		$cart = new Cart;
 		$cart->addToCart($product, $quantity, $mod);
 		if ($this->isAjax()) {
-			$this->getView('cart');
+			$this->getViewWithoutLayout('cart');
 		}
 		redirect();
 	}

@@ -25,6 +25,12 @@ class Controller
 		$viewObj->render($data);
 	}
 
+	public function getViewWithoutLayout(string $view, $data = [])
+	{
+		$viewObj = new View($this->meta, $view);
+		$viewObj->renderWithoutLayout($data);
+	}
+
 	public function isAjax()
 	{
 		return isset($_SERVER['HTTP_X_REQUESTED_WITH']) && $_SERVER['HTTP_X_REQUESTED_WITH'] === 'XMLHttpRequest';

@@ -38,6 +38,11 @@ Router::add('/cart/delete', [
 	'action' => 'delete',
 	'method' => 'POST'
 ]);
+Router::add('/cart/clear', [
+	'controller' => CartController::class,
+	'action' => 'clear',
+	'method' => 'POST'
+]);
 
 Router::prefix('/admin', function () {
 	Router::add('/', [

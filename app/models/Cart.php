@@ -44,4 +44,11 @@ class Cart extends AppModel
 		$_SESSION['cart.sum'] -= $sumMinus;
 		unset($_SESSION['cart'][$id]);
 	}
+
+	public function clear()
+	{
+		$_SESSION['cart'] = [];
+		unset($_SESSION['cart.quantity']);
+		unset($_SESSION['cart.sum']);
+	}
 }

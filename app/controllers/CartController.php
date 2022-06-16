@@ -13,6 +13,7 @@ class CartController extends Controller
 	{
 		parent::__construct();
 		$this->cartService = new CartService;
+		$this->model = new Cart;
 	}
 
 	public function add()
@@ -20,10 +21,9 @@ class CartController extends Controller
 		$product = $this->cartService->getProduct($_REQUEST['id']);
 		$quantity = $this->cartService->getQuantity($_REQUEST['quantity']);
 		$mod = $this->cartService->getMod($_REQUEST['mod'] ?? null, $_REQUEST['id']);
-		$cart = new Cart;
-		$cart->addToCart($product, $quantity, $mod);
+		$this->model->addToCart($product, $quantity, $mod);
 		if ($this->isAjax()) {
-			$this->getViewWithoutLayout('cart');
+			$this->getCart();
 		}
 	}
 
@@ -35,11 +35,18 @@ class CartController extends Controller
 	public function delete()
 	{
 		if (isset($_SESSION['cart'][$_REQUEST['id']])) {
-			$cart = new Cart;
-			$cart->deleteItem($_REQUEST['id']);
+			$this->model->deleteItem($_REQUEST['id']);
 		}
 		if ($this->isAjax()) {
-			$this->getViewWithoutLayout('cart');
+			$this->getCart();
+		}
+	}
+
+	public function clear()
+	{
+		$this->model->clear();
+		if ($this->isAjax()) {
+			$this->getCart();
 		}
 	}
 }

@@ -41,13 +41,23 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 				<div class="col-md-6 top-header-left">
 					<div class="cart box_1">
-						<a href="checkout.html">
+						<a href="cart" onclick="getCart(); return false;">
+							<div class="total">
+								<img src="../../../public/images/cart-1.png" alt="" />
+								<? if (!empty($_SESSION['cart'])) : ?>
+									<span class="simpleCart_total"><?= $_SESSION['cart.currency']['symbol_left'] . $_SESSION['cart.sum'] . $_SESSION['cart.currency']['symbol_right'] ?></span>
+								<? else : ?>
+									<span class="simpleCart_total">Empty cart</span>
+								<? endif ?>
+							</div>
+						</a>
+						<!-- <a href="checkout.html">
 							<div class="total">
 								<span class="simpleCart_total"></span>
 							</div>
 							<img src="../../../public/images/cart-1.png" alt="" />
 						</a>
-						<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p>
+						<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p> -->
 						<div class="clearfix"> </div>
 					</div>
 				</div>
@@ -214,8 +224,8 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="modal-body"></div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Сontinue shopping</button>
-					<a href="/cart" type="button" class="btn btn-primary">Make on order</a>
-					<button type="button" class="btn btn-danger" onclick="clearCart()">Clear the cart</button>
+					<a href="/cart" type="button" class="btn btn-primary" id="make-order-btn">Make on order</a>
+					<button type="button" class="btn btn-danger" onclick="clearCart()" id="clear-cart-btn">Clear the cart</button>
 				</div>
 			</div>
 		</div>

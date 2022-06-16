@@ -28,11 +28,9 @@
 				</tr>
 				<tr>
 					<td>Total price:</td>
-					<td colspan="5" class="text-right cart-qty"><?= $_SESSION['cart.currency']['symbol_left'] . $_SESSION['cart.sum'] . $_SESSION['cart.currency']['symbol_right'] ?></td>
+					<td colspan="5" class="text-right cart-sum"><?= $_SESSION['cart.currency']['symbol_left'] . $_SESSION['cart.sum'] . $_SESSION['cart.currency']['symbol_right'] ?></td>
 				</tr>
 			</tbody>
 		</table>
 	</div>
-<? else : ?>
-	<h3>Your cart is empty!</h3>
-<? endif ?>
+<? else : ?><h3>Your cart is empty!</h3><? endif ?>

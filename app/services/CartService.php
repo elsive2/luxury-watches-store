@@ -32,7 +32,7 @@ class CartService
 
 	public function getMod($modId, $productId)
 	{
-		if (empty($modId) || strtolower($modId) == 'default') {
+		if (empty($modId) || strtolower($modId) == 'default' || is_null($modId)) {
 			return null;
 		}
 

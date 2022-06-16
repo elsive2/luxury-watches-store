@@ -22,6 +22,11 @@ Router::add('/cart/add', [
 	'action' => 'add',
 	'method' => 'POST'
 ]);
+Router::add('/cart', [
+	'controller' => app\controllers\CartController::class,
+	'action' => 'getCart',
+	'method' => 'GET'
+]);
 
 Router::prefix('/admin', function () {
 	Router::add('/', [

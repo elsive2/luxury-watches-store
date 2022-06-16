@@ -19,7 +19,7 @@
 						<td>x<?= $product['quantity'] ?></td>
 						<td><?= $_SESSION['cart.currency']['symbol_left'] . $product['price'] * $_SESSION['cart.currency']['value'] . $_SESSION['cart.currency']['symbol_right'] ?></td>
 						<td><?= $_SESSION['cart.currency']['symbol_left'] . (int)$product['quantity'] * ((float)$product['price'] * $_SESSION['cart.currency']['value']) . $_SESSION['cart.currency']['symbol_right'] ?></td>
-						<td><a href="cart/delete?id=<?= $id ?>"><img src="../../public/images/cross.png" alt="" width="25" height="25"></a></td>
+						<td><img src="../../public/images/cross.png" alt="" width="25" height="25" id="delete-product-cross" data-id="<?= $id ?>"></td>
 					</tr>
 				<? endforeach ?>
 				<tr>

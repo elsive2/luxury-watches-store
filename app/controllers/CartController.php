@@ -29,7 +29,17 @@ class CartController extends Controller
 
 	public function getCart()
 	{
-		session_destroy();
 		$this->getViewWithoutLayout('cart');
+	}
+
+	public function delete()
+	{
+		if (isset($_SESSION['cart'][$_REQUEST['id']])) {
+			$cart = new Cart;
+			$cart->deleteItem($_REQUEST['id']);
+		}
+		if ($this->isAjax()) {
+			$this->getViewWithoutLayout('cart');
+		}
 	}
 }

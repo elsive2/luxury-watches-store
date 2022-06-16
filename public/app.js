@@ -12,7 +12,6 @@ function showCart(cart) {
 	if ($('.cart-sum').text()) {
 		$('.simpleCart_total').text($('#cart .cart-sum').text())
 	} else {
-		console.log(1)
 		$('.simpleCart_total').text('Empty cart')
 	}
 }
@@ -45,6 +44,16 @@ function getCart() {
 		error
 	});
 }
+$('#cart .modal-body').on('click', '#delete-product-cross', function () {
+	const id = $(this).data('id')
+	$.ajax({
+		url: '/cart/delete',
+		data: { id },
+		type: 'POST',
+		success: getCart,
+		error
+	})
+});
 
 // Other
 $('#currencies').change((event) => {

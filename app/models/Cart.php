@@ -36,6 +36,8 @@ class Cart extends AppModel
 
 	public function deleteItem($id)
 	{
+		// TODO: can delete only one product (also can add one product in the cart)
+
 		$quantityMinus = $_SESSION['cart'][$id]['quantity'];
 		$sumMinus = $_SESSION['cart'][$id]['quantity'] * ($_SESSION['cart'][$id]['price'] * $_SESSION['cart.currency']['value']);
 		$_SESSION['cart.quantity'] -= $quantityMinus;

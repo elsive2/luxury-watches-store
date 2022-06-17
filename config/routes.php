@@ -4,7 +4,8 @@ use app\controllers\{
 	CartController,
 	CurrencyController,
 	HomeController,
-	ProductController
+	ProductController,
+	SearchController
 };
 use ishop\Router;
 
@@ -42,6 +43,11 @@ Router::add('/cart/clear', [
 	'controller' => CartController::class,
 	'action' => 'clear',
 	'method' => 'POST'
+]);
+Router::add('/search', [
+	'controller' => SearchController::class,
+	'action' => 'search',
+	'method' => 'GET'
 ]);
 
 Router::prefix('/admin', function () {

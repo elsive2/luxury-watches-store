@@ -8,7 +8,9 @@ class Cart extends AppModel
 {
 	public function addToCart($product, $quantity, $mod)
 	{
-		$_SESSION['cart.currency'] = App::$app->getProperty('currency');
+		if (!isset($_SESSION['cart.currency'])) {
+			$_SESSION['cart.currency'] = App::$app->getProperty('currency');
+		}
 		if (!is_null($mod)) {
 			$id = "{$product['id']}-{$mod['id']}";
 			$title = "{$product['title']} ({$mod['title']})";
@@ -50,5 +52,28 @@ class Cart extends AppModel
 		$_SESSION['cart'] = [];
 		unset($_SESSION['cart.quantity']);
 		unset($_SESSION['cart.sum']);
+	}
+
+	public static function recalculate($curr)
+	{
+		// TODO: calculate total sum correctly
+
+		if (isset($_SESSION['cart.currency'])) {
+			if ($_SESSION['cart.currency']['base']) {
+				$_SESSION['cart.sum'] *= $curr['value'];
+			} else {
+				$_SESSION['cart.sum'] = $_SESSION['cart.sum'] / $_SESSION['cart.currency']['value'] * $curr['value'];
+			}
+			foreach ($_SESSION['cart'] as $id => $product) {
+				if ($_SESSION['cart.currency']['base']) {
+					$_SESSION['cart'][$id]['price'] *= $curr['value'];
+				} else {
+					$_SESSION['cart'][$id]['price'] = ($product['price'] / $_SESSION['cart.currency']['value']) * $curr['value'];
+				}
+			}
+			foreach ($curr as $k => $v) {
+				$_SESSION['cart.currency'][$k] = $v;
+			}
+		}
 	}
 }

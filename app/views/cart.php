@@ -17,8 +17,8 @@
 						<td><a href="prdouct?alias=<?= $product['alias'] ?>"><img src="../../public/images/<?= $product['img'] ?>" alt=""></a></td>
 						<td><a href="prdouct?alias=<?= $product['alias'] ?>"><?= $product['title'] ?></a></td>
 						<td>x<?= $product['quantity'] ?></td>
-						<td><?= $_SESSION['cart.currency']['symbol_left'] . $product['price'] * $_SESSION['cart.currency']['value'] . $_SESSION['cart.currency']['symbol_right'] ?></td>
-						<td><?= $_SESSION['cart.currency']['symbol_left'] . (int)$product['quantity'] * ((float)$product['price'] * $_SESSION['cart.currency']['value']) . $_SESSION['cart.currency']['symbol_right'] ?></td>
+						<td><?= $_SESSION['cart.currency']['symbol_left'] . $product['price'] . $_SESSION['cart.currency']['symbol_right'] ?></td>
+						<td><?= $_SESSION['cart.currency']['symbol_left'] . (int)$product['quantity'] * (float)$product['price'] . $_SESSION['cart.currency']['symbol_right'] ?></td>
 						<td><img src="../../public/images/cross.png" alt="" width="25" height="25" id="delete-product-cross" data-id="<?= $id ?>"></td>
 					</tr>
 				<? endforeach ?>

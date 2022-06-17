@@ -22,7 +22,7 @@ function redirect($url = false)
 	if ($url) {
 		$redirect = $url;
 	} else {
-		$redirect = isset($_SERVER['HTTP_REFERER']) ? $_SERVER['HTTP_REFERER'] : BASE_URI;
+		$redirect = $_SERVER['HTTP_REFERER'] ?? BASE_URI;
 	}
 	header("Location: $redirect");
 	exit;

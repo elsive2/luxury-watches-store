@@ -3,8 +3,10 @@
 	<div class="container">
 		<div class="breadcrumbs-main">
 			<ol class="breadcrumb">
-				<li><a href="/">Главная</a></li>
-				<li>Поиск по запросу "<?= $_GET['q']; ?>"</li>
+				<li><a href="/">Home</a></li>
+				<? foreach ($data['breadcrumbs'] as $breadcrumb) : ?>
+					<li><?= $breadcrumb ?></li>
+				<? endforeach ?>
 			</ol>
 		</div>
 	</div>

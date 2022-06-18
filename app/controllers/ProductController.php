@@ -45,4 +45,19 @@ class ProductController extends Controller
 			'mods'
 		));
 	}
+
+	public function getProductsByCategory()
+	{
+		$categoryAlias = $_GET['category'] ?? null;
+
+		$products = null;
+		if (!is_null($categoryAlias)) {
+			$products = R::getAll('SELECT * FROM product WHERE category_id = (SELECT id FROM category WHERE alias = ?)', [$categoryAlias]);
+		} else {
+			$products = R::findAll('product');
+		}
+		$breadcrumbs = ["category: $categoryAlias"];
+
+		$this->getView('products', compact('products', 'breadcrumbs'));
+	}
 }

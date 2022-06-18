@@ -13,7 +13,7 @@ class Breadcrumb
 		$breadcrumbs = "<li><a href=\"/\">Home</a></li>";
 
 		foreach ($breadcrumbsArray as $alias => $title) {
-			$breadcrumbs .= "<li><a href=\"category?alias={$alias}\">{$title}</a></li>";
+			$breadcrumbs .= "<li><a href=\"products?category={$alias}\">{$title}</a></li>";
 		}
 		$breadcrumbs .= "<li class=\"active\">{$productTitle}</li>";
 

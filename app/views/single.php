@@ -76,7 +76,7 @@
 							</div>
 							<ul class="tag-men">
 								<li><span>CATEGORY</span>
-									<span>: <a href="category?alias=<?= $cats[$data['product']['category_id']]['alias'] ?>"><?= $cats[$data['product']['category_id']]['title'] ?></a></span>
+									<span>: <a href="products?category=<?= $cats[$data['product']['category_id']]['alias'] ?>"><?= $cats[$data['product']['category_id']]['title'] ?></a></span>
 								</li>
 							</ul>
 							<div class="quantity mt-3">

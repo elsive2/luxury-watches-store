@@ -85,7 +85,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							</li>
 							<? foreach (app\widgets\menu\Menu::run() as $element) : ?>
 								<li class="grid">
-									<a href="#"><?= $element['title'] ?></a>
+									<a href="products?category=<?= $element['alias'] ?>"><?= $element['title'] ?></a>
 									<? if (!empty($element['childs'])) : ?>
 										<div class="mepanel">
 											<div class="row">
@@ -93,7 +93,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 													<ul>
 														<? foreach ($element['childs'] as $child) : ?>
 															<li>
-																<a href="#"><?= $child['title'] ?></a>
+																<a href="products?category=<?= $child['alias'] ?>"><?= $child['title'] ?></a>
 															</li>
 														<? endforeach ?>
 													</ul>

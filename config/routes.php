@@ -44,6 +44,11 @@ Router::add('/cart/clear', [
 	'action' => 'clear',
 	'method' => 'POST'
 ]);
+Router::add('/products', [
+	'controller' => ProductController::class,
+	'action' => 'getProductsByCategory',
+	'method' => 'GET'
+]);
 Router::add('/search', [
 	'controller' => SearchController::class,
 	'action' => 'search',

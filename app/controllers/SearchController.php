@@ -15,7 +15,8 @@ class SearchController extends Controller
 		}
 
 		$products = R::getAll('SELECT * FROM product WHERE title LIKE ?', ["%$q%"]);
+		$breadcrumbs = ["Searching for: {$_GET['q']}"];
 
-		$this->getView('search', compact('products'));
+		$this->getView('products', compact('products', 'breadcrumbs'));
 	}
 }

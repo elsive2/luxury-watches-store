@@ -1,6 +1,7 @@
 <?php
 
 use app\controllers\{
+	AuthController,
 	CartController,
 	CurrencyController,
 	HomeController,
@@ -53,6 +54,26 @@ Router::add('/search', [
 	'controller' => SearchController::class,
 	'action' => 'search',
 	'method' => 'GET'
+]);
+Router::add('/signup', [
+	'controller' => AuthController::class,
+	'action' => 'getSignup',
+	'method' => 'GET'
+]);
+Router::add('/user/signup', [
+	'controller' => AuthController::class,
+	'action' => 'signup',
+	'method' => 'POST'
+]);
+Router::add('/login', [
+	'controller' => AuthController::class,
+	'action' => 'getLogin',
+	'method' => 'GET'
+]);
+Router::add('/user/login', [
+	'controller' => AuthController::class,
+	'action' => 'login',
+	'method' => 'POST'
 ]);
 
 Router::prefix('/admin', function () {

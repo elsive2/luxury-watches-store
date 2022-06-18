@@ -58,10 +58,10 @@ class ProductController extends Controller
 			} else {
 				$products = R::getAll('SELECT * FROM product WHERE category_id = ? ORDER BY `status` ASC', [$category['id']]);
 			}
-			$breadcrumbs = ["Category: $categoryAlias"];
+			$breadcrumbs = Breadcrumb::getBreadcrumbs($category['id']);
 		} else {
 			$products = R::findAll('product', 'ORDER BY status ASC');
-			$breadcrumbs = ["All products"];
+			$breadcrumbs = Breadcrumb::getBreadcrumb("All products");
 		}
 
 		$this->getView('products', compact('products', 'breadcrumbs'));

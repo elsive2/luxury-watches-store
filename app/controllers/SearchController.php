@@ -2,6 +2,7 @@
 
 namespace app\controllers;
 
+use app\models\Breadcrumb;
 use Exception;
 use RedBeanPHP\R as R;
 
@@ -15,7 +16,7 @@ class SearchController extends Controller
 		}
 
 		$products = R::getAll('SELECT * FROM product WHERE title LIKE ?', ["%$q%"]);
-		$breadcrumbs = ["Searching for: {$_GET['q']}"];
+		$breadcrumbs = Breadcrumb::getBreadcrumb("Searching for: {$_GET['q']}");
 
 		$this->getView('products', compact('products', 'breadcrumbs'));
 	}

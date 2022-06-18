@@ -3,10 +3,7 @@
 	<div class="container">
 		<div class="breadcrumbs-main">
 			<ol class="breadcrumb">
-				<li><a href="/">Home</a></li>
-				<? foreach ($data['breadcrumbs'] as $breadcrumb) : ?>
-					<li><?= $breadcrumb ?></li>
-				<? endforeach ?>
+				<?= $data['breadcrumbs'] ?>
 			</ol>
 		</div>
 	</div>

@@ -6,7 +6,7 @@ use ishop\App;
 
 class Breadcrumb
 {
-	public static function getBreadcrumbs($categoryId, $productTitle)
+	public static function getBreadcrumbs($categoryId, $productTitle = null)
 	{
 		$cats = App::$app->getProperty('cats');
 		$breadcrumbsArray = self::getParts($cats, $categoryId);
@@ -15,9 +15,15 @@ class Breadcrumb
 		foreach ($breadcrumbsArray as $alias => $title) {
 			$breadcrumbs .= "<li><a href=\"products?category={$alias}\">{$title}</a></li>";
 		}
-		$breadcrumbs .= "<li class=\"active\">{$productTitle}</li>";
-
+		if (!is_null($productTitle)) {
+			$breadcrumbs .= "<li class=\"active\">{$productTitle}</li>";
+		}
 		return $breadcrumbs;
+	}
+
+	public static function getBreadcrumb($name)
+	{
+		return "<li><a href=\"/\">Home</a></li><li class=\"active\">{$name}</li>";
 	}
 
 	protected static function getParts($cats, $categoryId)

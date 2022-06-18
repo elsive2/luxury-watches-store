@@ -2,8 +2,6 @@
 
 namespace ishop;
 
-use Exception;
-
 class ErrorHandler
 {
 	public function __construct()

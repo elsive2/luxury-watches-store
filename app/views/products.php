@@ -26,9 +26,9 @@
 										<p>Explore Now</p>
 										<h4>
 											<a data-id="<?= $product['id']; ?>" class="add-to-cart-link" href="cart/add?id=<?= $product['id']; ?>"><i></i></a> <span class=" item_price"><?= $curr['symbol_left']; ?><?= $product['price'] * $curr['value']; ?><?= $curr['symbol_right']; ?></span>
-											<?php if ($product['old_price']) : ?>
+											<? if ($product['old_price']) : ?>
 												<small><del><?= $curr['symbol_left']; ?><?= $product['old_price'] * $curr['value']; ?><?= $curr['symbol_right']; ?></del></small>
-											<?php endif; ?>
+											<? endif; ?>
 										</h4>
 									</div>
 									<div class="srch srch1">
@@ -38,6 +38,11 @@
 							</div>
 						<? endforeach; ?>
 						<div class="clearfix"></div>
+						<div class="text-center">
+							<? if ($data['pagination']->countPages > 1) : ?>
+								<?= $data['pagination'] ?>
+							<? endif ?>
+						</div>
 					</div>
 				<? endif; ?>
 			</div>

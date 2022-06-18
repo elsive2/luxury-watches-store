@@ -50,13 +50,19 @@ class ProductController extends Controller
 	{
 		$categoryAlias = $_GET['category'] ?? null;
 
-		$products = null;
 		if (!is_null($categoryAlias)) {
-			$products = R::getAll('SELECT * FROM product WHERE category_id = (SELECT id FROM category WHERE alias = ?)', [$categoryAlias]);
+			$category = R::findOne('category', 'WHERE alias = ?', [$categoryAlias]);
+			if ($category['parent_id'] != 0) {
+				$categoryIds = [$category['id'], $category['parent_id']];
+				$products = R::findAll('product', 'category_id IN (' . R::genSlots($categoryIds) . ') ORDER BY `status` ASC', $categoryIds);
+			} else {
+				$products = R::getAll('SELECT * FROM product WHERE category_id = ? ORDER BY `status` ASC', [$category['id']]);
+			}
+			$breadcrumbs = ["Category: $categoryAlias"];
 		} else {
-			$products = R::findAll('product');
+			$products = R::findAll('product', 'ORDER BY status ASC');
+			$breadcrumbs = ["All products"];
 		}
-		$breadcrumbs = ["category: $categoryAlias"];
 
 		$this->getView('products', compact('products', 'breadcrumbs'));
 	}

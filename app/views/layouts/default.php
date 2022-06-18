@@ -28,13 +28,17 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								<? app\widgets\currency\Currency::run() ?>
 							</select>
 						</div>
-						<div class="box1">
-							<select tabindex="4" class="dropdown">
-								<option value="" class="label">English :</option>
-								<option value="1">English</option>
-								<option value="2">French</option>
-								<option value="3">German</option>
-							</select>
+						<div class="btn-group">
+							<a class="dropdown-toggle" data-toggle="dropdown">Account <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<? if (isset($_SESSION['user'])) : ?>
+									<li><a href="#">Welcome, <?= htmlspecialchars($_SESSION['user']['name']) ?></a></li>
+									<li><a href="/logout">Log out</a></li>
+								<? else : ?>
+									<li><a href="/login">Log in</a></li>
+									<li><a href="/signup">Sign up</a></li>
+								<? endif ?>
+							</ul>
 						</div>
 						<div class="clearfix"></div>
 					</div>
@@ -51,13 +55,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 								<? endif ?>
 							</div>
 						</a>
-						<!-- <a href="checkout.html">
-							<div class="total">
-								<span class="simpleCart_total"></span>
-							</div>
-							<img src="../../../public/images/cart-1.png" alt="" />
-						</a>
-						<p><a href="javascript:;" class="simpleCart_empty">Empty Cart</a></p> -->
 						<div class="clearfix"> </div>
 					</div>
 				</div>

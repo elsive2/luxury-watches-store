@@ -7,16 +7,16 @@ use RedBeanPHP\R as R;
 
 class CartService
 {
-	public function getQuantity($quantity)
-	{
+	public function getQuantity($quantity): int
+    {
 		if ($quantity && !empty($quantity)) {
 			return $quantity;
 		}
 		return 1;
 	}
 
-	public function getProduct($productId)
-	{
+	public function getProduct($productId): \RedBeanPHP\OODBBean
+    {
 		$productId = !empty($productId) ? $productId : null;
 
 		if (is_null($productId)) {

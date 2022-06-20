@@ -23,7 +23,7 @@ class CartController extends Controller
 		$mod = $this->cartService->getMod($_REQUEST['mod'] ?? null, $_REQUEST['id']);
 		$this->model->addToCart($product, $quantity, $mod);
 		if ($this->isAjax()) {
-			$this->getCart();
+		    $this->getCart();
 		}
 	}
 

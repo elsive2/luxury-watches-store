@@ -44,7 +44,7 @@ class AuthController extends Controller
 		if ($user->login($login, $password)) {
 			$_SESSION['success'] = 'You logged in successfully!';
 		} else {
-			$_SESSION['errors'] = 'Wrong creds!';
+			$_SESSION['errors'] = 'Wrong creeds!';
 		}
 		redirect();
 	}

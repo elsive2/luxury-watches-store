@@ -19,6 +19,20 @@ class Router
 		if (array_key_exists($current, self::$routes)) {
 			$route = self::$routes[$current];
 
+			if (isset($route['middleware'])) {
+			    if (is_array($route['middleware'])) {
+			        foreach ($route['middleware'] as $middleware) {
+			            if (!$middleware::handle()) {
+			                return redirect('/');
+                        }
+                    }
+                } else {
+			        if (!$route['middleware']::handle()) {
+			            return redirect('/');
+
+                    }
+                }
+            }
 			if ($_SERVER['REQUEST_METHOD'] !== $route['method']) {
 				throw new Exception('The route does not have this method', 404);
 			}

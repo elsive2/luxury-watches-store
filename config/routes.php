@@ -9,6 +9,8 @@ use app\controllers\{
 	SearchController
 };
 use ishop\Router;
+use app\middlewares\Auth;
+use app\middlewares\NoAuth;
 
 Router::add('/', [
 	'controller' => HomeController::class,
@@ -55,30 +57,36 @@ Router::add('/search', [
 	'action' => 'search',
 	'method' => 'GET'
 ]);
+// TODO: separate auth routes
 Router::add('/signup', [
 	'controller' => AuthController::class,
 	'action' => 'getSignup',
-	'method' => 'GET'
+	'method' => 'GET',
+    'middleware' => NoAuth::class
 ]);
 Router::add('/user/signup', [
 	'controller' => AuthController::class,
 	'action' => 'signup',
-	'method' => 'POST'
+	'method' => 'POST',
+    'middleware' => NoAuth::class
 ]);
 Router::add('/login', [
 	'controller' => AuthController::class,
 	'action' => 'getLogin',
-	'method' => 'GET'
+	'method' => 'GET',
+    'middleware' => NoAuth::class
 ]);
 Router::add('/user/login', [
 	'controller' => AuthController::class,
 	'action' => 'login',
-	'method' => 'POST'
+	'method' => 'POST',
+    'middleware' => NoAuth::class
 ]);
 Router::add('/logout', [
 	'controller' => AuthController::class,
 	'action' => 'logout',
-	'method' => 'GET'
+	'method' => 'GET',
+    'middleware' => Auth::class
 ]);
 
 Router::prefix('/admin', function () {

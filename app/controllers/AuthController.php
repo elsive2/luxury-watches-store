@@ -16,15 +16,18 @@ class AuthController extends Controller
 		$data = $_POST;
 		if (!empty($data)) {
 			$user = new User;
-			if (!$user->validate($data)) {
-				$user->getErrors();
-				redirect();
-			} else {
+			if ($user->validate($data)) {
 				$user->load($_POST);
-				debug($user->attributes);
-				$_SESSION['success'] = 'OK';
-				redirect();
+				$user->attributes['password'] = password_hash($user->attributes['password'], PASSWORD_DEFAULT);
+				if ($user->save('user')) {
+					$_SESSION['success'] = 'You signed up successfully!';
+				} else {
+					$_SESSION['errors'] = 'Something went wrong!';
+				}
+			} else {
+				$user->getErrors();
 			}
+			redirect();
 		}
 	}
 	public function getLogin()

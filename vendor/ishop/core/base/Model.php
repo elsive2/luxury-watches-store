@@ -4,6 +4,7 @@ namespace ishop\base;
 
 use ishop\DB;
 use Valitron\Validator;
+use RedBeanPHP\R as R;
 
 abstract class Model
 {
@@ -46,5 +47,14 @@ abstract class Model
 		}
 		$errors .= "</ul>";
 		$_SESSION['errors'] = $errors;
+	}
+
+	public function save($table)
+	{
+		$tbl = R::dispense($table);
+		foreach ($this->attributes as $name => $value) {
+			$tbl->$name = $value;
+		}
+		return R::store($tbl);
 	}
 }

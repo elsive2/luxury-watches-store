@@ -134,8 +134,10 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 						</div>
 					<? endif ?>
 					<? if (isset($_SESSION['success'])) : ?>
-						<?= $_SESSION['success'];
-						unset($_SESSION['success']) ?>
+						<div class="alert alert-success">
+							<?= $_SESSION['success'];
+							unset($_SESSION['success']) ?>
+						</div>
 					<? endif ?>
 				</div>
 			</div>

@@ -80,6 +80,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 							<li class="active">
 								<a href="/">Home</a>
 							</li>
+							<li>
+								<a href="/products">Products</a>
+							</li>
 							<? foreach (app\widgets\menu\Menu::run() as $element) : ?>
 								<li class="grid">
 									<a href="products?category=<?= $element['alias'] ?>"><?= $element['title'] ?></a>
@@ -119,6 +122,25 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 	</div>
 	</div>
 	<!--bottom-header-->
+
+	<div class="content">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<? if (isset($_SESSION['errors'])) : ?>
+						<div class="alert alert-danger">
+							<?= $_SESSION['errors'];
+							unset($_SESSION['errors']) ?>
+						</div>
+					<? endif ?>
+					<? if (isset($_SESSION['success'])) : ?>
+						<?= $_SESSION['success'];
+						unset($_SESSION['success']) ?>
+					<? endif ?>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	<?= $content ?>
 

@@ -13,10 +13,18 @@ class AuthController extends Controller
 	}
 	public function signup()
 	{
-		if (!empty($_POST)) {
+		$data = $_POST;
+		if (!empty($data)) {
 			$user = new User;
-			$user->load($_POST);
-			debug($user->attributes);
+			if (!$user->validate($data)) {
+				$user->getErrors();
+				redirect();
+			} else {
+				$user->load($_POST);
+				debug($user->attributes);
+				$_SESSION['success'] = 'OK';
+				redirect();
+			}
 		}
 	}
 	public function getLogin()

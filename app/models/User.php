@@ -12,4 +12,12 @@ class User extends AppModel
 		'address' 	=> '',
 		'role' 		=> 'user'
 	];
+
+	public $rules = [
+		'required' => ['login', 'password', 'email', 'address', 'name'],
+		'email' => ['email'],
+		'lengthMin' => [
+			['password', '8']
+		]
+	];
 }

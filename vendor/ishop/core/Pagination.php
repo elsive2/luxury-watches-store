@@ -42,17 +42,7 @@ class Pagination
 
 	public function getParams()
 	{
-		$url = explode('?', $_SERVER['REQUEST_URI']);
-		$uri = $url[0] . '?';
-		if (isset($url[1]) && $url[1] != '') {
-			$params = explode('&', $url[1]);
-			foreach ($params as $param) {
-				if (!preg_match('#page=#', $param)) {
-					$uri .= "{$param}&amp;";
-				}
-			}
-		}
-		return $uri;
+		return preg_replace('/&?page=\d&?/', '', $_SERVER['REQUEST_URI']) . '&';
 	}
 
 	public function getHtml()

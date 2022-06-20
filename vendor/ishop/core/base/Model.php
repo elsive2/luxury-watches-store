@@ -3,6 +3,7 @@
 namespace ishop\base;
 
 use ishop\DB;
+use Valitron\Validator;
 
 abstract class Model
 {
@@ -22,5 +23,28 @@ abstract class Model
 				$this->attributes[$k] = $data[$k];
 			}
 		}
+	}
+
+	public function validate($data)
+	{
+		$validator = new Validator($data);
+		$validator->rules($this->rules);
+		if (!$validator->validate()) {
+			$this->errors = $validator->errors();
+			return false;
+		}
+		return true;
+	}
+
+	public function getErrors()
+	{
+		$errors = "<ul>";
+		foreach ($this->errors as $field) {
+			foreach ($field as $error) {
+				$errors .= "<li>$error</li>";
+			}
+		}
+		$errors .= "</ul>";
+		$_SESSION['errors'] = $errors;
 	}
 }

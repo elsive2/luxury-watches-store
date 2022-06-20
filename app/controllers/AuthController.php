@@ -16,8 +16,8 @@ class AuthController extends Controller
 		$data = $_POST;
 		if (!empty($data)) {
 			$user = new User;
-			if ($user->validate($data)) {
-				$user->load($_POST);
+			$user->load($_POST);
+			if ($user->checkUnique() && $user->validate($data)) {
 				$user->attributes['password'] = password_hash($user->attributes['password'], PASSWORD_DEFAULT);
 				if ($user->save('user')) {
 					$_SESSION['success'] = 'You signed up successfully!';

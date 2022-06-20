@@ -48,4 +48,13 @@ class AuthController extends Controller
 		}
 		redirect();
 	}
+
+	public function logout()
+	{
+		if (isset($_SESSION['user'])) {
+			unset($_SESSION['user']);
+			$_SESSION['success'] = 'You logged out successfully!';
+		}
+		redirect('/login');
+	}
 }

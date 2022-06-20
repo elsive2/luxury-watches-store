@@ -75,6 +75,11 @@ Router::add('/user/login', [
 	'action' => 'login',
 	'method' => 'POST'
 ]);
+Router::add('/logout', [
+	'controller' => AuthController::class,
+	'action' => 'logout',
+	'method' => 'GET'
+]);
 
 Router::prefix('/admin', function () {
 	Router::add('/', [

@@ -32,8 +32,20 @@ class AuthController extends Controller
 	}
 	public function getLogin()
 	{
+		$this->setMeta('log in');
+		$this->getView('login');
 	}
 	public function login()
 	{
+		$login = trim($_POST['login']) ?? null;
+		$password = trim($_POST['password']) ?? null;
+
+		$user = new User;
+		if ($user->login($login, $password)) {
+			$_SESSION['success'] = 'You logged in successfully!';
+		} else {
+			$_SESSION['errors'] = 'Wrong creds!';
+		}
+		redirect();
 	}
 }

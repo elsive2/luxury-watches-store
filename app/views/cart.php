@@ -36,9 +36,12 @@
 			</tbody>
 		</table>
 	</div>
-    <form action="order/checkout" method="POST" class="mt-3 mb-5">
-        <button type="submit" class="btn btn-success">Confirm your order</button>
-    </form>
+    <? if (isset($data['isOrderPage'])):?>
+        <form action="order/checkout" method="POST" class="mt-3 mb-5">
+            <button type="submit" class="btn btn-success">Confirm your order</button>
+        </form>
+    <?endif?>
+
 	<? if (isset($data['isOrderPage'])):?>
     </div>
     <? endif ?>

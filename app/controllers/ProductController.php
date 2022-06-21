@@ -5,13 +5,12 @@ namespace app\controllers;
 use app\models\Breadcrumb;
 use app\models\Product;
 use Exception;
+use ishop\App;
 use ishop\Pagination;
 use RedBeanPHP\R as R;
 
 class ProductController extends Controller
 {
-	const PER_PAGE = 12;
-
 	public function getByAlias()
 	{
 		if (!isset($_GET['alias'])) {
@@ -53,23 +52,24 @@ class ProductController extends Controller
 	{
 		$categoryAlias = $_GET['category'] ?? null;
 
+		$perPage = App::$app->getProperty('per_page');
 		$page = $_GET['page'] ?? 1;
 		$page = (int)$page;
 		$total = R::count('product', 'WHERE category_id = (SELECT id FROM category WHERE alias = ?)', [$categoryAlias]);
-		$pagination = new Pagination($page, self::PER_PAGE, $total);
+		$pagination = new Pagination($page, $perPage, $total);
 		$start = $pagination->getStart();
 
 		if (!is_null($categoryAlias)) {
 			$category = R::findOne('category', 'WHERE alias = ?', [$categoryAlias]);
 			if ($category['parent_id'] != 0) {
 				$categoryIds = [$category['id'], $category['parent_id']];
-				$products = R::findAll('product', 'category_id IN (' . R::genSlots($categoryIds) . ") ORDER BY `status` ASC LIMIT $start, " . self::PER_PAGE, $categoryIds);
+				$products = R::findAll('product', 'category_id IN (' . R::genSlots($categoryIds) . ") ORDER BY `status` ASC LIMIT $start, $perPage", $categoryIds);
 			} else {
-				$products = R::getAll("SELECT * FROM product WHERE category_id = ? ORDER BY `status` ASC LIMIT $start, " . self::PER_PAGE, [$category['id']]);
+				$products = R::getAll("SELECT * FROM product WHERE category_id = ? ORDER BY `status` ASC LIMIT $start, $perPage", [$category['id']]);
 			}
 			$breadcrumbs = Breadcrumb::getBreadcrumbs($category['id']);
 		} else {
-			$products = R::findAll('product', "ORDER BY status ASC LIMIT $start, " . self::PER_PAGE);
+			$products = R::findAll('product', "ORDER BY status ASC LIMIT $start, $perPage");
 			$breadcrumbs = Breadcrumb::getBreadcrumb("All products");
 		}
 

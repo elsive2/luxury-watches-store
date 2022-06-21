@@ -4,6 +4,7 @@
 namespace app\controllers;
 
 
+use app\models\Cart;
 use app\models\Order;
 
 class OrderController extends Controller
@@ -21,5 +22,8 @@ class OrderController extends Controller
 
         $orderId = $orderModel->saveOrder($user['id'], $_COOKIE['currency']);
         $orderModel->mailOrder($orderId, $user['email']);
+        Cart::clear();
+        $_SESSION['success'] = 'You made the order successfully!';
+        redirect('/');
     }
 }

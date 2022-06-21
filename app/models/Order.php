@@ -3,7 +3,6 @@
 
 namespace app\models;
 
-
 use RedBeanPHP\R as R;
 
 class Order extends AppModel
@@ -31,6 +30,22 @@ class Order extends AppModel
 
     public function mailOrder($orderId, $userEmail)
     {
+        $cfg = require_once CONFIG . '/mail.php';
 
+        $transport = (new \Swift_SmtpTransport($cfg['mail_host'], $cfg['mail_port']))
+            ->setUsername($cfg['mail_username'])
+            ->setPassword($cfg['mail_password']);
+        $mailer = new \Swift_Mailer($transport);
+
+        ob_start();
+        require APP . '/mails/mail_order.php';
+        $body = ob_get_clean();
+
+        $message = (new \Swift_Message('Order №'.$orderId))
+            ->setFrom($userEmail)
+            ->setTo('maximyakovlev228@gmail.com')
+            ->setBody($body, 'text/html');
+
+        $mailer->send($message);
     }
 }

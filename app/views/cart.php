@@ -45,4 +45,8 @@
 	<? if (isset($data['isOrderPage'])):?>
     </div>
     <? endif ?>
-<? else : ?><h3>Your cart is empty!</h3><? endif ?>
+<? else : ?>
+    <div class="container mb-5">
+        <h3>Your cart is empty!</h3>
+    </div>
+<? endif ?>

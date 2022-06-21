@@ -7,13 +7,12 @@ use app\services\CartService;
 
 class CartController extends Controller
 {
-	private $cartService;
+	private CartService $cartService;
 
-	public function __construct()
+    public function __construct()
 	{
 		parent::__construct();
 		$this->cartService = new CartService;
-		$this->model = new Cart;
 	}
 
 	public function add()
@@ -21,7 +20,7 @@ class CartController extends Controller
 		$product = $this->cartService->getProduct($_REQUEST['id']);
 		$quantity = $this->cartService->getQuantity($_REQUEST['quantity']);
 		$mod = $this->cartService->getMod($_REQUEST['mod'] ?? null, $_REQUEST['id']);
-		$this->model->addToCart($product, $quantity, $mod);
+		Cart::addToCart($product, $quantity, $mod);
 		if ($this->isAjax()) {
 		    $this->getCart();
 		}
@@ -35,7 +34,7 @@ class CartController extends Controller
 	public function delete()
 	{
 		if (isset($_SESSION['cart'][$_REQUEST['id']])) {
-			$this->model->deleteItem($_REQUEST['id']);
+			Cart::deleteItem($_REQUEST['id']);
 		}
 		if ($this->isAjax()) {
 			$this->getCart();
@@ -44,7 +43,7 @@ class CartController extends Controller
 
 	public function clear()
 	{
-		$this->model->clear();
+		Cart::clear();
 		if ($this->isAjax()) {
 			$this->getCart();
 		}

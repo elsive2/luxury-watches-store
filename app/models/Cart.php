@@ -6,7 +6,7 @@ use ishop\App;
 
 class Cart extends AppModel
 {
-	public function addToCart($product, $quantity, $mod)
+	public static function addToCart($product, $quantity, $mod)
 	{
 		if (!isset($_SESSION['cart.currency'])) {
 			$_SESSION['cart.currency'] = App::$app->getProperty('currency');
@@ -36,7 +36,7 @@ class Cart extends AppModel
 		$_SESSION['cart.sum'] = isset($_SESSION['cart.sum']) ? $_SESSION['cart.sum'] * $_SESSION['cart.currency']['value'] + ($quantity * ($price * $_SESSION['cart.currency']['value'])) : $quantity * ($price * $_SESSION['cart.currency']['value']);
 	}
 
-	public function deleteItem($id)
+	public static function deleteItem($id)
 	{
 		// TODO: can delete only one product (also can add one product in the cart)
 
@@ -47,7 +47,7 @@ class Cart extends AppModel
 		unset($_SESSION['cart'][$id]);
 	}
 
-	public function clear()
+	public static function clear()
 	{
 		$_SESSION['cart'] = [];
 		unset($_SESSION['cart.quantity']);

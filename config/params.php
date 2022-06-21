@@ -1,9 +1,7 @@
 <?php
 
 return [
-	'admin_email' => 'admin@mail.ru',
+	'admin_email' => 'maximyakovlev228@gmail.com',
 	'shop_name' => 'Luxury Watches',
-	'pagination' => 3,
-	'smtp_login' => '',
-	'smtp_password' => '',
+    'per_page' => 9
 ];

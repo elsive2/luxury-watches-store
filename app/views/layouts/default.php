@@ -247,7 +247,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				<div class="modal-body"></div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-default" data-dismiss="modal">Сontinue shopping</button>
-					<a href="/cart" type="button" class="btn btn-primary" id="make-order-btn">Make on order</a>
+					<a href="/order" type="button" class="btn btn-primary" id="make-order-btn">Make on order</a>
 					<button type="button" class="btn btn-danger" id="clear-cart-btn">Clear the cart</button>
 				</div>
 			</div>

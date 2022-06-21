@@ -1,4 +1,7 @@
 <? if (!empty($_SESSION['cart'])) : ?>
+    <? if (isset($data['isOrderPage'])):?>
+    <div class="container">
+    <? endif ?>
 	<div class="table-responsive">
 		<table class="table table-hover table-striped">
 			<thead>
@@ -33,4 +36,10 @@
 			</tbody>
 		</table>
 	</div>
+    <form action="order/checkout" method="POST" class="mt-3 mb-5">
+        <button type="submit" class="btn btn-success">Confirm your order</button>
+    </form>
+	<? if (isset($data['isOrderPage'])):?>
+    </div>
+    <? endif ?>
 <? else : ?><h3>Your cart is empty!</h3><? endif ?>

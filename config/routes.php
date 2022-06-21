@@ -6,7 +6,8 @@ use app\controllers\{
 	CurrencyController,
 	HomeController,
 	ProductController,
-	SearchController
+	SearchController,
+    OrderController
 };
 use ishop\Router;
 use app\middlewares\Auth;
@@ -88,7 +89,18 @@ Router::add('/logout', [
 	'method' => 'GET',
     'middleware' => Auth::class
 ]);
-
+Router::add('/order', [
+    'controller' => OrderController::class,
+    'action' => 'makeAnOrder',
+    'method' => 'GET',
+    'middleware' => Auth::class
+]);
+Router::add('/order/checkout', [
+    'controller' => OrderController::class,
+    'action' => 'checkout',
+    'method' => 'POST',
+    'middleware' => Auth::class
+]);
 Router::prefix('/admin', function () {
 	Router::add('/', [
 		'controller' => HomeController::class,

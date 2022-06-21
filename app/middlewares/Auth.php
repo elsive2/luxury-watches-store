@@ -7,6 +7,9 @@ class Auth implements Middleware
 {
     public static function handle(): bool
     {
-        return isset($_SESSION['user']);
+        if (!($isAuth = isset($_SESSION['user']))) {
+            $_SESSION['errors'] = 'You have to log in!';
+        }
+        return $isAuth;
     }
 }

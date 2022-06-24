@@ -45,7 +45,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
 				</div>
 				<div class="col-md-6 top-header-left">
 					<div class="cart box_1">
-						<a href="cart" onclick="getCart(); return false;">
+						<a href="cart" onclick="getCart(<?=empty($_SESSION['cart'])?>); return false;">
 							<div class="total">
 								<img src="../../../public/images/cart-1.png" alt="" />
 								<? if (!empty($_SESSION['cart'])) : ?>

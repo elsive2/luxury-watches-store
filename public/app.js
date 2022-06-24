@@ -1,7 +1,6 @@
 // Cart
 function showCart(cart) {
-	// TODO: hiding buttons ↓
-	if ($.trim(cart) == "<h3>Your cart is empty!</h3>") {
+	if ($.trim(cart).includes('Your cart is empty!')) {
 		$('#make-order-btn, #clear-cart-btn').css('display', 'none');
 	} else {
 		$('#make-order-btn, #clear-cart-btn').css('display', 'inline-block');
@@ -36,7 +35,7 @@ $('body').on('click', '.add-to-cart-link', function (event) {
 	});
 });
 
-function getCart() {
+function getCart(isEmptyCart) {
 	$.ajax({
 		url: '/cart',
 		type: 'GET',

@@ -32,7 +32,15 @@
 										</h4>
 									</div>
 									<div class="srch srch1">
-										<span>-50%</span>
+                                        <? if ($product['old_price']): ?>
+                                            <div class="srch">
+                                                <?
+                                                $oldPrice = $product['old_price'] * $curr['value'];
+                                                $price = $product['price'] * $curr['value'];
+                                                ?>
+                                                <span><?= (($price - $oldPrice) / $oldPrice) * 100 ?>%</span>
+                                            </div>
+                                        <? endif ?>
 									</div>
 								</div>
 							</div>

@@ -3891,3 +3891,7 @@ h3.ghj {
 	position: relative;
 	top: -2px;
 }
+
+#delete-product-cross {
+	cursor: pointer;
+}

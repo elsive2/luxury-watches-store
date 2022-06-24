@@ -70,7 +70,11 @@
 						</div>
 						<? if ($product['old_price'] != 0) : ?>
 							<div class="srch">
-								<span>-<?= round((($product['old_price'] - $product['price']) * 100) / ($product['price'] * $curr['value'])) ?>%</span>
+                                <?
+                                $oldPrice = $product['old_price'] * $curr['value'];
+                                $price = $product['price'] * $curr['value'];
+                                ?>
+                                <span><?= (($price - $oldPrice) / $oldPrice) * 100 ?>%</span>
 							</div>
 						<? endif ?>
 					</div>

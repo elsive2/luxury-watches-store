@@ -17,6 +17,7 @@ class Pagination
 		$this->countPages = $this->getCountPages();
 		$this->currentPage = $this->getCurrentPage($page);
 		$this->uri = $this->getParams();
+		debug($this->uri);
 	}
 
 	public function getCountPages()
@@ -42,7 +43,9 @@ class Pagination
 
 	public function getParams()
 	{
-		return preg_replace('/&?page=\d&?/', '', $_SERVER['REQUEST_URI']) . '&';
+	    $components = parse_url($_SERVER['REQUEST_URI']);
+	    $symb = isset($components['query']) ? '&' : '?';
+		return preg_replace('/&?page=\d+&?/', '', $_SERVER['REQUEST_URI']) . $symb;
 	}
 
 	public function getHtml()

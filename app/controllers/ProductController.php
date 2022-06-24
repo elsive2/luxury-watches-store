@@ -52,10 +52,15 @@ class ProductController extends Controller
 	{
 		$categoryAlias = $_GET['category'] ?? null;
 
+		$total = null;
+		if (!is_null($categoryAlias)) {
+            $total = R::count('product', 'WHERE category_id = (SELECT id FROM category WHERE alias = ?)', [$categoryAlias]);
+        } else {
+		    $total = R::count('product');
+        }
 		$perPage = App::$app->getProperty('per_page');
 		$page = $_GET['page'] ?? 1;
 		$page = (int)$page;
-		$total = R::count('product', 'WHERE category_id = (SELECT id FROM category WHERE alias = ?)', [$categoryAlias]);
 		$pagination = new Pagination($page, $perPage, $total);
 		$start = $pagination->getStart();
 

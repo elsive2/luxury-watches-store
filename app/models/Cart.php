@@ -33,7 +33,7 @@ class Cart extends AppModel
 			];
 		}
 		$_SESSION['cart.quantity'] = isset($_SESSION['cart.quantity']) ? $_SESSION['cart.quantity'] + $quantity : $quantity;
-		$_SESSION['cart.sum'] = isset($_SESSION['cart.sum']) ? $_SESSION['cart.sum'] * $_SESSION['cart.currency']['value'] + ($quantity * ($price * $_SESSION['cart.currency']['value'])) : $quantity * ($price * $_SESSION['cart.currency']['value']);
+		$_SESSION['cart.sum'] = isset($_SESSION['cart.sum']) ? $_SESSION['cart.sum'] + ($quantity * ($price * $_SESSION['cart.currency']['value'])) : $quantity * ($price * $_SESSION['cart.currency']['value']);
 	}
 
 	public static function deleteItem($id)
@@ -56,8 +56,6 @@ class Cart extends AppModel
 
 	public static function recalculate($curr)
 	{
-		// TODO: calculate total sum correctly
-
 		if (isset($_SESSION['cart.currency'])) {
 			if ($_SESSION['cart.currency']['base']) {
 				$_SESSION['cart.sum'] *= $curr['value'];
